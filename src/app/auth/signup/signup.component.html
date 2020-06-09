@@ -2,15 +2,26 @@
 
 <form [formGroup]="authForm" class="ui form">
 
-    <div class="field">
-        <label> Username</label>
+    <!-- <div class="field">
+        <label> Username </label>
         <input formControlName="username" />
-    </div> 
+    </div>  -->
+    <app-input label="Username" [control]="authForm.get('username')" inputType="text"></app-input>
+    <app-input label= "password" [control]="authForm.get('password')" inputType="password"></app-input>
+    <app-input label= "passwordConfirmation" [control]="authForm.get('passwordConfirmation')" inputType="password"></app-input>
 
 
-    {{ authForm.get('username').errors | json}}
 
-    <div class="field">
+    <div *ngIf="authForm.get('password').touched && authForm.get('passwordConfirmation').touched && authForm.errors" class="ui red basic label">
+        <p *ngIf="authForm.errors.passWordsDontMatch">
+            Password and password Confirmation must match
+        </p>
+    </div>
+
+    <!-- debug
+    {{ authForm.get('username').errors | json}} -->
+
+    <!-- <div class="field">
         <label> password</label>
         <input formControlName="password" />
         {{ authForm.get('password').errors | json}}
@@ -20,8 +31,10 @@
         <label>Confirm Password</label>
         <input formControlName="passwordConfirmation" />
         {{ authForm.get('passwordConfirmation').errors | json}}
-    </div> 
+    </div>  -->
     <button class="ui submit button primary ">Submit</button>
-    
+
+    debug: 
+    {{ authForm.errors | json}}
 
 </form>

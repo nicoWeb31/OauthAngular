@@ -11,10 +11,13 @@ export class MatchPassword implements Validators{
         const { password, passwordConfirmation } = formGroup.value;
 
         if( password === passwordConfirmation){
+
             return null;
+
         }else{
             
             return {passWordsDontMatch : true};
+            
         }
     }
             
