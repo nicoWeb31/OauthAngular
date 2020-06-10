@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { BehaviorSubject, onErrorResumeNext} from 'rxjs';
 import { tap } from 'rxjs/operators';
+
+
+
 interface usernameAvailableResponse {
   available: boolean;
 }
@@ -20,6 +23,12 @@ interface SignupResponse{
 interface SingnedinResponse {
   authenticated: boolean,
   username: string
+
+}
+
+interface SigninCredentials{
+  username: string;
+  password: string;
 
 }
 
@@ -78,6 +87,16 @@ export class AuthService {
       .pipe(
         tap(()=>{
           this.sinedin$.next(false);
+        })
+      )
+    }
+
+    //signin
+    signin(credentials :SigninCredentials){
+      return this.http.post(`${this.url}/auth/signin`,credentials)
+      .pipe(
+        tap(()=>{
+          this.sinedin$.next(true);
         })
       )
     }
