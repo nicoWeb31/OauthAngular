@@ -44,10 +44,13 @@ export class SignupComponent implements OnInit {
       this.authServ.signup(this.authForm.value).subscribe({
         next: response=>{
             //navigate to some other route
+            
         },
         error: (err)=>{
           if(!err.status){
             this.authForm.setErrors({ noConnection: true })
+          }else{
+            this.authForm.setErrors({ unknowerror: true })
           }
           
         }

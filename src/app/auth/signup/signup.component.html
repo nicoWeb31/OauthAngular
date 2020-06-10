@@ -16,7 +16,16 @@
         <p *ngIf="authForm.errors.passWordsDontMatch">
             Password and password Confirmation must match
         </p>
+        <p *ngIf="authForm.errors.noConnection">
+            No internet detected, faild to sign up
+        </p>
+        <p *ngIf="authForm.errors.unknowerror">
+            Failed to singup
+        </p>
     </div>
+
+
+
 
     <!-- debug
     {{ authForm.get('username').errors | json}} -->
