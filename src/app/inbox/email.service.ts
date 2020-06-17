@@ -29,7 +29,7 @@ export class EmailService {
 
   //GET EMAIL
   getEmails(){
-    return this.http.get<EmailSumary[]>(`${this.rootUrl}/emails`)
+    return this.http.get<EmailSumary[]>(`${this.rootUrl}/emails`);
   }
 
 
