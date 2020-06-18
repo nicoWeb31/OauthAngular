@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import  { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import  { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import {  Email }from  './email';
 import { EmailService } from './email.service';
+import { catchError } from 'rxjs/operators';
+import {EMPTY} from 'rxjs';
 
  
 @Injectable({
@@ -12,14 +14,21 @@ export class EmailResolverService implements Resolve<Email> {
   
     constructor(
 
-      private emailServ: EmailService 
+      private emailServ: EmailService,
+      private router: Router
 
     ) { }
   
   
     resolve(route: ActivatedRouteSnapshot, ){
       const {id} = route.params
-      return this.emailServ.getEmail(id)
+      return this.emailServ.getEmail(id).pipe(
+        catchError(()=>{
+          this.router.navigateByUrl('/inbox/not-found');
+
+          return EMPTY;
+        })
+      )
 
     }
 
