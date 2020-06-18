@@ -18,3 +18,15 @@ a.active:before {
 ._side{
     background-color: rgba(91, 109, 190, 0.3);
 }
+
+.content {
+    width: 90%;
+}
+
+.trim {
+    
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
