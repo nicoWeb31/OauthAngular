@@ -1,6 +1,6 @@
-<div ((click)="onDismissClick()") class="ui dimmer visible active">
+<div (click)="onDismissClick()" class="ui dimmer visible active">
 
-    <div class="ui modal visible active" (click)="$even.stopPropagation()" >
+    <div class="ui modal visible active" (click)="$event.stopPropagation()" >
 
         <i class="close icon" (click)="onDismissClick()"></i>
 
