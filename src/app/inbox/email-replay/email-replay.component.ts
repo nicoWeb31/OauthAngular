@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Email } from '../email';
+import { EmailService } from '../email.service';
 
 @Component({
   selector: 'app-email-replay',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmailReplayComponent implements OnInit {
 
-  constructor() { }
+  email: Email
+  showModal = false
+
+
+  constructor(
+    private emailServ : EmailService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(email: Email){
+
   }
 
 }
