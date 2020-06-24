@@ -1,19 +1,25 @@
 
 <div class="header">
-<div>
-    <h3>{{ email.subject }}</h3>
     <div>
-        From : <i>{{ email.from }}</i>
+        <h3>{{ email.subject }}</h3>
+        <div>
+            From : <i>{{ email.from }}</i>
+        </div>
+        <div class="">
+            To: <i>{{ email.to }}</i>
+        </div>
     </div>
-    <div class="">
-        To: <i>{{ email.to }}</i>
+
+    <div>
+        <app-email-replay [email]="email" ></app-email-replay>
     </div>
-</div>
 
-</div>
+    </div>
 
-<div class="ui divider">
-</div>
-Content: 
-{{ email.text  }}
+    <div class="ui divider">
+    </div>
+    Content: 
+    {{ email.text  }}
 <div [innerHTML]=email.html>{{ email.text  }}</div>
+
+
