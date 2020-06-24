@@ -8,9 +8,10 @@ class="ui button inverted primary fluid"
 
 <app-modal (dismiss)="showModal = false"  *ngIf="showModal">
 
-    <div modalTilte > Compose</div>
+    <div modalTitle > Compose </div>
 
-    <!-- //342   a faire -->
+    
+        <app-email-form [email]= "email" ></app-email-form>
 
 
 </app-modal>
