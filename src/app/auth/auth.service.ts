@@ -3,7 +3,7 @@ import { HttpClient } from  '@angular/common/http';
 import { BehaviorSubject, onErrorResumeNext} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-
+// interface debut
 
 interface usernameAvailableResponse {
   available: boolean;
@@ -32,6 +32,15 @@ interface SigninCredentials{
 
 }
 
+interface SigninResponse {
+  username: string
+}
+
+
+
+
+//interface fin 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,10 +48,10 @@ export class AuthService {
 
 
 
+  
+  
+  username: string;
   sinedin$ = new BehaviorSubject(null);
-
-
-
   private url = 'https://api.angular-email.com';
   //private urlApi = 'http://api-extranet.com/oauth';
 
@@ -64,8 +73,9 @@ export class AuthService {
       `${this.url}/auth/signup`,credetials
     )
     .pipe(
-      tap(()=>{
+      tap(({username})=>{
         this.sinedin$.next(true);
+        this.username = username
     }))
 
   }
@@ -74,9 +84,10 @@ export class AuthService {
   checkAuth(){
     return this.http.get<SingnedinResponse>(`${this.url}/auth/signedin`)
     .pipe(
-      tap(({ authenticated }) => {
+      tap(({ authenticated, username }) => {
 
         this.sinedin$.next(authenticated);
+        this.username = username
         
       })
     )}
@@ -94,10 +105,11 @@ export class AuthService {
 
     //signin
     signin(credentials :SigninCredentials){
-      return this.http.post(`${this.url}/auth/signin`,credentials,{})
+      return this.http.post<SigninResponse>(`${this.url}/auth/signin`,credentials,{})
       .pipe(
-        tap(()=>{
+        tap(({username})=>{
           this.sinedin$.next(true);
+          this.username = username
         })
       )
     }

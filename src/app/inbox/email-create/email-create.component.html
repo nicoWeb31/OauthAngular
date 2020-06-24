@@ -11,7 +11,7 @@ class="ui button inverted primary fluid"
     <div modalTitle > Compose </div>
 
     
-        <app-email-form [email]= "email" ></app-email-form>
+        <app-email-form  (emailSubmit)="onSubmit($event)"    [email]= "email" ></app-email-form>
 
 
 </app-modal>

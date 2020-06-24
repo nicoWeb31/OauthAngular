@@ -38,6 +38,12 @@ export class EmailService {
   }
 
 
+  //SEND EMAIL
+  sendEmail(email: Email){
+    return this.http.post<any>(`${this.rootUrl}/emails`,email)
+  }
+
+
 
 
 
