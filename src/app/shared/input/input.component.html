@@ -1,10 +1,28 @@
 <div class="field">
     <label>{{ label }}</label>
-    <input [formControl] = "control" [type]="inputType" >
+
+
+
+    
+    <input  *ngIf="controlType === 'input' "  [formControl] = "control" [type]="inputType" />
+    <!-- or  -->
+    <textarea *ngIf="controlType === 'area' " name="" id="" cols="30" rows="10" [formControl] = "control"></textarea>
+    
+
+
+
+
+
     <div *ngIf="showError()" class="ui pointing red basic label">
         <p *ngIf="control.errors.required">
             value is required
         </p>
+
+        <p *ngIf="control.errors.email">
+            enter a valid email
+        </p>
+
+
         <p *ngIf="control.errors.minlength">
             value you entered is 
             {{ control.errors.minlength.actualLength }}

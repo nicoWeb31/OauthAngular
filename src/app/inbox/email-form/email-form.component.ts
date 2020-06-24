@@ -1,6 +1,6 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { Email } from '../email';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-email-form',
@@ -23,10 +23,10 @@ export class EmailFormComponent implements OnInit {
     console.log("EmailFormComponent -> ngOnInit -> this.email", this.email)
     
     this.emailForm = new FormGroup({
-      to: new FormControl(this.email.to),
-      from: new FormControl(this.email.from),
-      subject: new FormControl(this.email.subject),
-      text: new FormControl(this.email.text),
+      to: new FormControl(this.email.to, [Validators.required,Validators.email]),
+      from: new FormControl({value:this.email.from, disabled :true}),
+      subject: new FormControl(this.email.subject,[Validators.required]),
+      text: new FormControl(this.email.text,[Validators.required]),
 
       
 
